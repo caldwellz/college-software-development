@@ -1,0 +1,42 @@
+###############################################################
+# Program:
+#     Assignment 02, STACK
+#     Brother JonesL, CS235
+# Author:
+#     Brian Thompson
+#	  Zach Caldwell
+#     John Batty
+#	  Jordon Thompson
+# Summary:
+#     A working stack data structure with a way to convert infix
+#     to postfix and from postfix to assembly.
+#     The hardest part of the program what figuring out the 
+#     parenthesis and how to incorporate spaces into the output.
+# Time:
+#     6 discussion
+#     15 programming
+###############################################################
+
+##############################################################
+# The main rule
+##############################################################
+a.out: stack.h assignment02.o infix.o 
+	g++ -o a.out assignment02.o infix.o 
+	tar -cf assignment02.tar *.h *.cpp makefile
+
+##############################################################
+# The individual components
+#      assignment02.o : the driver program
+#      infix.o        : the logic for the infix --> postfix program
+##############################################################
+assignment02.o: stack.h infix.h assignment02.cpp
+	g++ -c assignment02.cpp
+
+infix.o: stack.h infix.h infix.cpp
+	g++ -c infix.cpp
+
+
+.PHONY: clean
+clean:
+	-rm *.o*
+	-rm *.tar
